@@ -128,22 +128,4 @@ def create_distance_matrix(coords):
 
 
 D = create_distance_matrix(node_coord_section)
-# print(node_coord_section)
 
-"""
-# Print the results
-print("PROBLEM NAME:", problem_name)
-print("KNAPSACK DATA TYPE:", knapsack_data_type)
-print("DIMENSION:", dimension)
-print("NUMBER OF ITEMS:", num_items)
-print("CAPACITY OF KNAPSACK:", capacity)
-print("MIN SPEED:", min_speed)
-print("MAX SPEED:", max_speed)
-print("RENTING RATIO:", renting_ratio)
-print("EDGE_WEIGHT_TYPE:", edge_weight_type)
-print("NODE_COORD_SECTION:", node_coord_section)
-print("ITEMS SECTION:", items_array)
-print(f"{node_number_counts")
-print(D)
-"""
-# print("ITEMS SECTION:", items_array)

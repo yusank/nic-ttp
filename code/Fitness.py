@@ -11,17 +11,19 @@ def calc_fitness(location, information, route, packing_plan, max_weight):
     item_num = len(information[0])  # item number of each city
     distance = 0.0
     current_velocity = 1.00
-
+    #iterate each route
     for a in range(len(route)):
+        # iterate each packingplan
         for b in range(len(packing_plan)):
             current_weight = 0
             total_profit = 0
             total_time = 0
-
+            #get the distance between each city
             for i in range(len(route[a]) - 1):
                 distance = location[route[a][i] - 1][route[a][i + 1] - 1]
 
                 for j in range(item_num):
+                    #check which item to steal in this city
                     if packing_plan[b][route[a][i] - 1][j] == 1:
                         current_weight += information[route[a][i] - 2][j][2]
                         total_profit += information[route[a][i] - 2][j][1]
@@ -35,7 +37,7 @@ def calc_fitness(location, information, route, packing_plan, max_weight):
                 total_time += distance / current_velocity
 
             distance = location[route[a][-1]][route[a][0]]
-
+            #calculate last city to first city
             for j in range(item_num):
                 if packing_plan[b][route[a][-1] - 1][j] == 1:
                     current_weight += information[route[a][-1] - 1][j][2]
@@ -112,11 +114,3 @@ total_fitness = calc_fitness(location, information, route, packing_plan, max_wei
 for row in total_fitness:
     print("\t".join(map(str, row)))
 
-total_profit = [row[2] for row in total_fitness]
-total_time = [row[3] for row in total_fitness]
-
-plt.scatter(total_time, total_profit, alpha=0.5, s=5)
-plt.title("Total Profit vs Total Time")
-plt.xlabel("Total Time")
-plt.ylabel("Total Profit")
-plt.show()
