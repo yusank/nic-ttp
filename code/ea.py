@@ -149,10 +149,10 @@ class EA:
             # Use tournament_selection select two parents.
             a = self.tournament_selection()
             b = self.tournament_selection()
-            #print("!")
+            # print("!")
             # Use crossover to generate offspring
             c, d = self.crossover_operator(a, b)
-            #print("?")
+            # print("?")
             # Use mutation generate new solutions.
             e = self.mutation_operator(c)
             f = self.mutation_operator(d)
@@ -178,7 +178,7 @@ class EA:
             data.append(best_fit)
 
         # Print best solution and best fitness.
-        #print("Best solution:", best_sol)
-        #print("Best fitness:", best_fit)
-        #print(self.population)
+        # print("Best solution:", best_sol)
+        # print("Best fitness:", best_fit)
+        # print(self.population)
         return self.population

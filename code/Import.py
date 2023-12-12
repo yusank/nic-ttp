@@ -1,26 +1,37 @@
 import numpy as np
+import sys
 from collections import Counter
 from scipy.spatial.distance import cdist
 
 # Initialize variables to store the read data
-problem_name = ""         # Store the name of the problem
-knapsack_data_type = ""   # Store the data type of the knapsack problem
-dimension = 0             # Store the dimension of the problem
-num_items = 0             # Store the number of items
-capacity = 0              # Store the capacity of the knapsack
-min_speed = 0.0           # Store the minimum speed
-max_speed = 0.0           # Store the maximum speed
-renting_ratio = 0.0       # Store the renting ratio
-edge_weight_type = ""      # Store the type of edge weight
-node_coord_section = []    # Store the list of node coordinates
-items_section = []         # Store the list of item information
+problem_name = ""  # Store the name of the problem
+knapsack_data_type = ""  # Store the data type of the knapsack problem
+dimension = 0  # Store the dimension of the problem
+num_items = 0  # Store the number of items
+capacity = 0  # Store the capacity of the knapsack
+min_speed = 0.0  # Store the minimum speed
+max_speed = 0.0  # Store the maximum speed
+renting_ratio = 0.0  # Store the renting ratio
+edge_weight_type = ""  # Store the type of edge weight
+node_coord_section = []  # Store the list of node coordinates
+items_section = []  # Store the list of item information
 
 
-#Choose file name
-file_name = input("Input the file name(e.g.: a280-n1395.txt):")
+# Choose file name
+
+
+file_name = ""
+try:
+    file_name = sys.argv[1]
+    if file_name == "" or file_name is None:
+        raise SystemExit("must provide a dataset filename as input.")
+except Exception as e:
+    sys.exit(f"read args failed with error:{e}")
+
+# file_name = input("Input the file name(e.g.: a280-n1395.txt):")
 
 # Open the file
-with open(file_name, 'r') as file:
+with open(file_name, "r") as file:
     # Read the file content line by line
     for line in file:
         # Remove the newline character at the end of the line
@@ -98,26 +109,28 @@ assigned_node_counts = Counter()
 for group in grouped_items.values():
     items_array.append(group)
 
-    assigned_node_numbers = [item[3] for item in group]  # Get all ASSIGNED NODE NUMBER in the current group
-    node_number_counts = Counter(assigned_node_numbers)  # Count the occurrences of ASSIGNED NODE NUMBER
+    assigned_node_numbers = [
+        item[3] for item in group
+    ]  # Get all ASSIGNED NODE NUMBER in the current group
+    node_number_counts = Counter(
+        assigned_node_numbers
+    )  # Count the occurrences of ASSIGNED NODE NUMBER
 
     # Update the total counter with the count of ASSIGNED NODE NUMBER
     assigned_node_counts.update(node_number_counts)
-    
 
 
 node_coord_section = np.array(node_coord_section)
 
+
 def create_distance_matrix(coords):
-    return cdist(coords[:, 1:], coords[:, 1:], metric='euclidean')
+    return cdist(coords[:, 1:], coords[:, 1:], metric="euclidean")
 
 
-
-    
 D = create_distance_matrix(node_coord_section)
-#print(node_coord_section)
+# print(node_coord_section)
 
-'''
+"""
 # Print the results
 print("PROBLEM NAME:", problem_name)
 print("KNAPSACK DATA TYPE:", knapsack_data_type)
@@ -132,5 +145,5 @@ print("NODE_COORD_SECTION:", node_coord_section)
 print("ITEMS SECTION:", items_array)
 print(f"{node_number_counts")
 print(D)
-'''
-#print("ITEMS SECTION:", items_array)
+"""
+# print("ITEMS SECTION:", items_array)

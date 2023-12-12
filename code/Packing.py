@@ -117,7 +117,7 @@ class KNP:
                     else:
                         # Update individual if the item cannot be taken due to weight limit
                         individual[city_index][item_index] = 0
-                #print(total_weight)
+                # print(total_weight)
         return total_profit, total_weight
 
     def genetic_algorithm(self):
@@ -130,7 +130,7 @@ class KNP:
         best_weight = 0
 
         for generation in range(self.generations):
-            #print(generation)
+            # print(generation)
             new_population = []
             fitness_values = [self.fitness_function(ind)[0] for ind in self.population]
 
@@ -155,10 +155,10 @@ class KNP:
                 if fitness > best_fitness:
                     best_fitness = fitness
                     best_weight = weight
-                    #best_solution = ind
+                    # best_solution = ind
 
-      #  pprint.pprint(self.population)
-        
+        #  pprint.pprint(self.population)
+
         return new_population, best_fitness, best_weight
 
 
@@ -168,7 +168,7 @@ ITEM_MATRIX = [
     [(t[0], t[3], t[2], t[1]) for t in inner_list] for inner_list in ITEM_MATRIX
 ]
 
-'''
+"""
 [
     [(1, 1, 30, 20), (1, 2, 40, 20), (1, 3, 10, 30)],
     [(2, 1, 40, 30), (2, 2, 40, 20), (2, 3, 30, 20)],
@@ -176,27 +176,26 @@ ITEM_MATRIX = [
     [(4, 1, 50, 50), (4, 2, 90, 20), (4, 3, 50, 30)],
     [(5, 1, 50, 70), (5, 2, 40, 80), (5, 3, 30, 90)],
 ]
-'''
+"""
 
 MAX_WEIGHT = Import.capacity
 knp = KNP(
-    item_matrix = ITEM_MATRIX,
-    max_weight = MAX_WEIGHT,
-    pop_size = 20,
-    tour_size = 10,
-    generations = 1000,
+    item_matrix=ITEM_MATRIX,
+    max_weight=MAX_WEIGHT,
+    pop_size=20,
+    tour_size=10,
+    generations=1000,
 )
-best_solution, best_fitness, best_weight= knp.genetic_algorithm()
+best_solution, best_fitness, best_weight = knp.genetic_algorithm()
 
-
+# Add 0 for first city to solution, which has no items.
 best_solution = [[[0] * len(ITEM_MATRIX[0])] + sublist for sublist in best_solution]
 
-'''
+"""
 #print(len(best_solution[0]))
 print(
     f"Best Solution: {best_solution}, Total Profit: {best_fitness}, Total Weight: {best_weight}"
 )
 num_elements = len(best_solution[0])
 print("Number of elements in best_solution:", num_elements)
-
-'''
+"""

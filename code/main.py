@@ -1,8 +1,8 @@
 import Fitness
 import matplotlib.pyplot as plt
 
-def main():
 
+def main():
     total_fitness = Fitness.total_fitness
     for row in total_fitness:
         print("\t".join(map(str, row)))
@@ -11,15 +11,16 @@ def main():
     total_time = [row[3] for row in total_fitness]
 
     plt.scatter(total_time, total_profit, alpha=0.5)
-    plt.title('Total Profit vs Total Time')
-    plt.xlabel('Total Time')
-    plt.ylabel('Total Profit')
+    plt.title("Total Profit vs Total Time")
+    plt.xlabel("Total Time")
+    plt.ylabel("Total Profit")
     plt.show()
 
-main()
-'''
 
-total_fitness structure：{
+main()
+
+"""
+total_fitness structure:{
 {route_no, packingplan_no, totalprofit, totaltime},
 ...
 }
@@ -27,6 +28,4 @@ total_fitness structure：{
 
 
 ####result analysis part####
-
-
-'''
+"""
