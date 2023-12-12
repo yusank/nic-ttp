@@ -19,13 +19,3 @@ def main():
 
 main()
 
-"""
-total_fitness structure:{
-{route_no, packingplan_no, totalprofit, totaltime},
-...
-}
-20 route * 20 packingplan -> 400 fitness
-
-
-####result analysis part####
-"""
